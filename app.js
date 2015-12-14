@@ -12,12 +12,10 @@ $(document).ready(function(){
 		})
 		
 		$("#employeeinfo").find("input[type=text]").val("");
-		$("#employeeinfo").find("input[type=number]").val("");
 		$("#employeefirstname").focus();
 
 		// Append newly created Object to DOM
 		appendDom(values);
-
 
 		// Push newly created Object to global array
 		array.push(values);
@@ -28,6 +26,10 @@ $(document).ready(function(){
 		// Report back to current user 'Total Monthly Cost of Salaries'
 		alert("Current total monthly cost of salaries: $" + totalMonthlySalaries);
 	});
+
+	//  Remove employee info from HTML
+	$("#container").on('click', '.button', delEmployee);
+
 });
 
 ////////////////  APPEND USER ENTRIES TO THE DOM  ///////////////////
@@ -35,13 +37,8 @@ function appendDom(object){
 	$("#container").append("<div></div>");
 	var $el = $("#container").children().last();
 
-	$el.append("<p>" + object.employeefirstname + ", " + object.employeelastname + ", " + object.employeenumber + ", " + object.employeejobtitle + ", " + object.employeesalary + "</p>");
-	
-	// $el.append("<p>" + object.employeefirstname + "</p>");
-	// $el.append("<p>" + object.employeelastname + "</p>");
-	// $el.append("<p>" + object.employeenumber + "</p>");
-	// $el.append("<p>" + object.employeejobtitle + "</p>");
-	// $el.append("<p>" + object.employeesalary + "</p>");
+	$el.append("<p>First Name: " + object.employeefirstname + "<br>Last Name: " + object.employeelastname + "<br>Employee #: " + object.employeenumber + "<br>Title: " + object.employeejobtitle + "<br>Annual Salary: " + object.employeesalary + "<br><button class= 'button'>" + "Remove " + object.employeefirstname + " " + object.employeelastname + "</button>" + "</p>");
+
 }
 
 ////////////////  CALCULATE TOTAL MONTHLY SALARIES  //////////////////
@@ -52,4 +49,9 @@ function calcSalary(empArray){
 		MonthlySalaries += parseInt(empArray[i].employeesalary)/12;
 	}
 	return Math.round(MonthlySalaries);
+}
+
+////////  REMOVE THE BUTTON AND ITS PARENT ELEMENT FROM HTML  /////////
+function delEmployee(){
+	$(this).parent().remove();
 }
