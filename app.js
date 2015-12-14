@@ -1,3 +1,10 @@
+/*
+Notes: add another container to the HTML to store the totalSalary
+
+Pro Mode: use splice()
+*/
+
+
 var array = [];
 var totalMonthlySalaries = 0;
 
@@ -24,7 +31,8 @@ $(document).ready(function(){
 		totalMonthlySalaries = calcSalary(array);
 
 		// Report back to current user 'Total Monthly Cost of Salaries'
-		alert("Current total monthly cost of salaries: $" + totalMonthlySalaries);
+		// alert("Current total monthly cost of salaries: $" + totalMonthlySalaries);
+		$('#salary').text("Total Monthly Salary: " + totalMonthlySalaries);
 	});
 
 	//  Remove employee info from HTML
